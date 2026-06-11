@@ -42,7 +42,13 @@ Gestionnaire de todo list — application web avec stockage PostgreSQL.
 
 ## Configuration
 
-Les paramètres de connexion sont dans le fichier `.env` :
+### Variables d'environnement
+
+Les paramètres de connexion sont dans le fichier `.env`. Deux contextes sont possibles :
+
+#### 1. Développement local (chacun sur son poste)
+
+Copie le contenu de `.env.example.local` dans `.env` :
 
 ```
 PGHOST=localhost
@@ -51,7 +57,28 @@ PGUSER=postgres
 PGPASSWORD=1234
 PGDATABASE=todo_db
 PORT=3000
+SESSION_SECRET=change-moi-pour-une-longue-chaine-aleatoire-secrete
 ```
+
+Cela te permet de tester l'application en local avec ta propre base de données PostgreSQL.
+
+#### 2. Serveur de test partagé (192.168.1.3)
+
+Copie le contenu de `.env.example.server` dans `.env` sur le serveur :
+
+```
+PGHOST=localhost
+PGPORT=5432
+PGUSER=postgres
+PGPASSWORD=1234
+PGDATABASE=todo_db
+PORT=3000
+SESSION_SECRET=change-moi-pour-une-longue-chaine-aleatoire-secrete
+```
+
+Cela te permet de déployer l'application sur le serveur de test que tous les devs peuvent accéder via `http://192.168.1.3:3000`.
+
+> ⚠️ En production, remplacez `SESSION_SECRET` par une longue chaîne aléatoire secrète unique.
 
 La table `tasks` est créée automatiquement au démarrage.
 
