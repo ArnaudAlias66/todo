@@ -48,33 +48,13 @@ Les paramètres de connexion sont dans le fichier `.env`. Deux contextes sont po
 
 #### 1. Développement local (chacun sur son poste)
 
-Copie le contenu de `.env.example.local` dans `.env` :
-
-```
-PGHOST=localhost
-PGPORT=5432
-PGUSER=postgres
-PGPASSWORD=1234
-PGDATABASE=todo_db
-PORT=3000
-SESSION_SECRET=change-moi-pour-une-longue-chaine-aleatoire-secrete
-```
+Copie le contenu de `.env.example.local` dans `.env`
 
 Cela te permet de tester l'application en local avec ta propre base de données PostgreSQL.
 
 #### 2. Serveur de test partagé (192.168.1.3)
 
-Copie le contenu de `.env.example.server` dans `.env` sur le serveur :
-
-```
-PGHOST=localhost
-PGPORT=5432
-PGUSER=postgres
-PGPASSWORD=1234
-PGDATABASE=todo_db
-PORT=3000
-SESSION_SECRET=change-moi-pour-une-longue-chaine-aleatoire-secrete
-```
+Copie le contenu de `.env.example.server` dans `.env` sur le serveur
 
 Cela te permet de déployer l'application sur le serveur de test que tous les devs peuvent accéder via `http://192.168.1.3:3000`.
 
@@ -92,3 +72,38 @@ npm start        # démarre le serveur
 Puis ouvrir http://localhost:3000 dans le navigateur.
 
 Pour le développement avec rechargement automatique : `npm run dev`.
+
+## Déploiement sur le serveur de test (Windows)
+
+Prérequis : Git, Node.js et PostgreSQL déjà installés sur le serveur.
+
+**Première installation** (depuis une session RDP ou PowerShell sur le serveur) :
+
+```powershell
+git clone <url-du-repo> C:\apps\todo
+cd C:\apps\todo
+npm install --omit=dev
+copy .env.srv.example .env
+notepad .env        # renseigner les vraies valeurs
+node server.js      # vérifier que ça démarre
+```
+
+**Lancer en arrière-plan avec PM2 :**
+
+```powershell
+npm install -g pm2
+pm2 start server.js --name todo
+pm2 save
+pm2 startup
+```
+
+**Mise à jour :**
+
+```powershell
+cd C:\apps\todo
+git pull
+npm install --omit=dev
+pm2 restart todo
+```
+
+L'application est ensuite accessible sur `http://192.168.1.3:3000`.
