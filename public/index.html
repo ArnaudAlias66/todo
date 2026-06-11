@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ma Todo List</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Application (révélée une fois la session vérifiée) -->
+    <div class="app" id="app" hidden>
+      <header>
+        <div class="header-top">
+          <span class="user-info" id="user-email"></span>
+          <div class="header-actions">
+            <a href="kanban.html" target="_blank" class="btn-link small">🗂️ Vue Kanban</a>
+            <button id="logout-btn" class="ghost small">Déconnexion</button>
+          </div>
+        </div>
+        <h1>📋 Ma Todo List</h1>
+        <p class="subtitle">Gérez vos tâches simplement</p>
+      </header>
+
+      <!-- Formulaire d'ajout / édition -->
+      <form id="task-form" class="card">
+        <input type="hidden" id="task-id" />
+        <div class="row">
+          <input
+            type="text"
+            id="title"
+            placeholder="Que faut-il faire ?"
+            required
+            autocomplete="off"
+          />
+        </div>
+        <div class="row">
+          <textarea id="description" placeholder="Description (optionnel)"></textarea>
+        </div>
+        <div class="row inline">
+          <label>
+            Priorité
+            <select id="priority">
+              <option value="basse">Basse</option>
+              <option value="normale" selected>Normale</option>
+              <option value="haute">Haute</option>
+            </select>
+          </label>
+          <label>
+            Échéance
+            <input type="date" id="due_date" />
+          </label>
+        </div>
+        <div class="row inline actions">
+          <button type="submit" id="submit-btn">Ajouter</button>
+          <button type="button" id="cancel-btn" class="ghost" hidden>Annuler</button>
+        </div>
+      </form>
+
+      <!-- Filtres -->
+      <div class="filters">
+        <div class="tabs">
+          <button class="tab active" data-filter="all">Toutes</button>
+          <button class="tab" data-filter="todo">À faire</button>
+          <button class="tab" data-filter="done">Terminées</button>
+        </div>
+        <input type="search" id="search" placeholder="Rechercher…" autocomplete="off" />
+      </div>
+
+      <!-- Liste des tâches -->
+      <ul id="task-list" class="task-list"></ul>
+      <p id="empty" class="empty" hidden>Aucune tâche pour le moment 🎉</p>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

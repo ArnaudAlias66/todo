@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanban — Ma Todo List</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="kanban-page">
+    <div id="board-wrapper" class="board-wrapper" hidden>
+      <header class="board-header">
+        <div>
+          <h1>🗂️ Kanban</h1>
+          <p class="subtitle" id="kanban-user"></p>
+        </div>
+        <a href="index.html" class="btn-link small">← Retour à la liste</a>
+      </header>
+
+      <div class="board">
+        <section class="column" data-status="todo">
+          <h2>📋 À faire <span class="count" data-count></span></h2>
+          <div class="column-body" data-dropzone></div>
+        </section>
+        <section class="column" data-status="in_progress">
+          <h2>🚧 En cours <span class="count" data-count></span></h2>
+          <div class="column-body" data-dropzone></div>
+        </section>
+        <section class="column" data-status="done">
+          <h2>✅ Terminé <span class="count" data-count></span></h2>
+          <div class="column-body" data-dropzone></div>
+        </section>
+      </div>
+    </div>
+
+    <script src="kanban.js"></script>
+  </body>
+</html>

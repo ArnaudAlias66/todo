@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connexion — Ma Todo List</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="auth">
+      <div class="card auth-card">
+        <h1>📋 Ma Todo List</h1>
+        <p class="subtitle" id="auth-subtitle">Connectez-vous pour accéder à vos tâches</p>
+
+        <form id="auth-form">
+          <div class="row">
+            <input type="email" id="auth-email" placeholder="Email" required autocomplete="email" />
+          </div>
+          <div class="row">
+            <input
+              type="password"
+              id="auth-password"
+              placeholder="Mot de passe"
+              required
+              autocomplete="current-password"
+            />
+          </div>
+          <p id="auth-error" class="auth-error" hidden></p>
+          <div class="row">
+            <button type="submit" id="auth-submit" class="full">Se connecter</button>
+          </div>
+        </form>
+
+        <p class="auth-toggle">
+          <span id="auth-toggle-text">Pas encore de compte ?</span>
+          <a href="#" id="auth-toggle-link">Créer un compte</a>
+        </p>
+      </div>
+    </div>
+
+    <script src="login.js"></script>
+  </body>
+</html>
